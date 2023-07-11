@@ -1,0 +1,11 @@
+{
+ "name": "Working Styles",
+ "icons": [
+  {
+   "src": "/icons8-strength-ios-16-96.png",
+   "sizes": "96x96",
+   "type": "image/png",
+   "density": "2.0"
+  }
+ ]
+}

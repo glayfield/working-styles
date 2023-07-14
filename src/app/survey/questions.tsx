@@ -1,4 +1,4 @@
-[
+const QUESTIONS = [
   {
     "Id": 1,
     "Group": 1,
@@ -124,4 +124,6 @@
     "Group": 5,
     "Question": "Do you have a tendency to be the 'rebel' or the 'odd one out' in a group?"
   }
-]
+];
+
+export default QUESTIONS;

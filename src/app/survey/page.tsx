@@ -1,58 +1,57 @@
+'use client';
+import { useState } from 'react';
+
 import Footer from "../footer"
 import Nav from "../nav"
+import QUESTIONS from "./questions";
 
-const people = [
+const answers = [
   {
-    name: 'Calvin Hawkins',
-    email: 'calvin.hawkins@example.com',
-    image:
-      'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'Yes',
+    score: 2
   },
   {
-    name: 'Kristen Ramos',
-    email: 'kristen.ramos@example.com',
-    image:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    text: 'To Some Extent',
+    score: 1
   },
   {
-    name: 'Ted Fox',
-    email: 'ted.fox@example.com',
-    image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
+    text: 'No',
+    score: 0
+  }
 ]
 
-export default function Example() {
+export default function Survey () {
+  const totalQuestions:number = 25;
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [results, setResults] = useState<Array<Number>>([]);
+  
+  function updateScore(score:Number) {
+    setResults( arr => [...arr, score]);
+    console.log(results);
+    setCurrentQuestion(currentQuestion + 1);
+  }
+
   return (
     <div>
       <Nav></Nav>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <ul className="divide-y divide-gray-200">
-          {people.map((person) => (
-            <li key={person.email} className="py-4 flex">
-              <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-900">{person.name}</p>
-                <p className="text-sm text-gray-500">{person.email}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
+      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div className="bg-blue-600 h-2.5 rounded-full" style={{width: `${currentQuestion / totalQuestions * 100}%` }}></div>
+      </div>
+      <div className="mx-auto max-w-7xl py-4 sm:px-6 sm:py-32 lg:px-8 ">
+        <div className="bg-gray-900 px-6 pt-6 pb-16 shadow-2xl sm:rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex-col space-y-8 text-center">
+          <p className="text-sm">Question {currentQuestion} of {totalQuestions}</p>
+          <h1 className="text-2xl py-4">{QUESTIONS[currentQuestion-1].Question}</h1>
+          <div className="space-y-4 justify-center">
+            {answers.map((answer) => (
+              <button key={answer.score} className="w-full text-xl rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                      onClick={() => updateScore(answer.score)}>
+                {answer.text}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
       <Footer></Footer>
     </div>
   )
 }
-
-/* export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          TEST
-        </div>
-      </div>
-
-    </main>
-  )
-} */

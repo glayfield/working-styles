@@ -1,4 +1,4 @@
-[
+const QUESTION_GROUPS = [
   {
     "Id": 1,
     "Name": "Be Perfect Driver"
@@ -19,4 +19,6 @@
     "Id": 5,
     "Name": "Try Hard Driver"
   }
-]
+];
+
+export default QUESTION_GROUPS;

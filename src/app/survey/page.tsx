@@ -1,13 +1,17 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 
 import { Question, Answer, Option, Group } from '@/interfaces';
-import Footer from "../footer"
-import Nav from "../nav"
-import QUESTIONS from "./questions";
-import OPTIONS from "./options";
-import GROUPS from './groups';
-import Link from 'next/link';
+
+import Nav from '@/components/nav';
+import Progress from '@/components/progress';
+import Container from '@/components/container';
+import Footer from '@/components/footer';
+
+import GROUPS from '@/data/groups';
+import OPTIONS from '@/data/options';
+import QUESTIONS from '@/data/questions';
 
 export default function Survey() {
   const totalQuestions: number = 25;
@@ -36,30 +40,28 @@ export default function Survey() {
   if (answers.length >= 25) {
     return (
       <div>
-        <Nav></Nav>
-        <div className="mx-auto max-w-6xl py-4 sm:px-6 sm:py-32 lg:px-8 ">
+        <Nav />
+        <Container>
           <h1>Your Results</h1>
-          
-          {GROUPS.map((group: Group) => (
-            <h2 key={group.id}>{group.name} = {totalScore(group.id)} / 10</h2>
-          ))}
-
-          <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+          <div>
+            {GROUPS.map((group: Group) => (
+              <h2 key={group.id}>{group.name} = {totalScore(group.id)} / 10</h2>
+            ))}
+          </div>
+          <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link href="/" className="rounded-md bg-white px-3.5 py-2.5 text-md font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Start again?</Link>
           </div>
-        </div>
+        </Container>
+        <Footer />
       </div>
     )
   }
 
   return (
     <div>
-      <Nav></Nav>
-      <div className="w-full bg-gray-200 rounded-full h-15 dark:bg-gray-700">
-        <div className="bg-blue-600 h-15 rounded-fullbg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style={{ width: `${progress}%` }}>{progress}%</div>
-      </div>
-      <div className="mx-auto max-w-6xl py-4 sm:px-6 sm:py-32 lg:px-8 ">
-        <div className="bg-gray-900 px-6 pt-6 pb-16 shadow-2xl sm:rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex-col space-y-8 text-center">
+      <Nav />
+      <Progress progress={progress} />
+      <Container>
           <p className="text-sm">Question {question.id} of {totalQuestions}</p>
           <div className="text-xl py-4 min-h-[40vh]">{question.text}</div>
           <div className="space-y-4 justify-center">
@@ -70,9 +72,8 @@ export default function Survey() {
               </button>
             ))}
           </div>
-        </div>
-      </div>
-      <Footer></Footer>
+      </Container>
+      <Footer />
     </div>
   )
 }

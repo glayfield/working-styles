@@ -27,17 +27,20 @@ function AxisLeft({ scale }: AxisLeftProps) {
     return <g ref={ref} />;
 }
 
+
 function Bars({ data, height, scaleX, scaleY }: BarsProps) {
+    const colors = ['teal', 'yellow', 'red', 'purple', 'grey'];
+
     return (
         <>
-            {data.map(({ value, label }) => (
+            {data.map(({ value, label }, index) => (
                 <rect
                     key={`bar-${label}`}
                     x={scaleX(label)}
                     y={scaleY(value)}
                     width={scaleX.bandwidth()}
                     height={height - scaleY(value)}
-                    fill="teal"
+                    fill={colors[index]}
                 />
             ))}
         </>
@@ -46,15 +49,15 @@ function Bars({ data, height, scaleX, scaleY }: BarsProps) {
 
 export function BarChart({ data }: BarChartProps) {
     const margin = { top: 10, right: 0, bottom: 20, left: 30 };
-    const width = 500 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
+    const width = 330 - margin.left - margin.right;
+    const height = 270 - margin.top - margin.bottom;
   
     const scaleX = scaleBand()
       .domain(data.map(({ label }) => label))
       .range([0, width])
-      .padding(0.5);
+      .padding(0.25);
     const scaleY = scaleLinear()
-      .domain([0, Math.max(...data.map(({ value }) => value))])
+      .domain([0, 10])
       .range([height, 0]);
   
     return (

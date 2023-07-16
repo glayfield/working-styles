@@ -1,8 +1,6 @@
 'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-
-import { Question, Answer, Option, Group, ChartResult, BarChartProps } from '@/types/interfaces';
+//import { useRouter } from 'next/navigation';
+import { Question, Answer, Option, Group, ChartResult } from '@/types/interfaces';
 
 import Nav from '@/components/nav';
 import Progress from '@/components/progress';
@@ -13,19 +11,29 @@ import GROUPS from '@/data/groups';
 import OPTIONS from '@/data/options';
 import QUESTIONS from '@/data/questions';
 import { BarChart } from '@/components/bar-chart';
+import { useStickyState } from '@/utils/storage';
 
 export default function Survey() {
+  //const router = useRouter();
   const totalQuestions: number = 25;
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Array<Answer>>([]);
+  const [currentQuestion, setCurrentQuestion] = useStickyState(0, 'user-current');
+  const [answers, setAnswers] = useStickyState([], 'user-answers');
+  const [results, setResults] = useStickyState([], 'user-results');
   const question: Question = QUESTIONS[currentQuestion];
   const progress: number = Math.round(currentQuestion / totalQuestions * 100);
-  let results: Array<ChartResult> = [];
-
+  
   function updateScore(question: Question, score: number) {
     const answer = { group: question.group, score };
-    setAnswers(arr => [...arr, answer]);
+    setAnswers((arr: any) => [...arr, answer]);
     setCurrentQuestion(currentQuestion + 1);
+
+    if (currentQuestion === 24) {
+      GROUPS.map((group: Group) => (
+        setResults((arr: any) => [...arr, newChartResult(group)])
+      ));
+      setAnswers([]);
+      setCurrentQuestion(0);
+    }
   }
 
   function totalScore(groupId: number) {
@@ -44,12 +52,15 @@ export default function Survey() {
     return {label, value};
   }
 
-  if (answers.length >= 25) {
+  const startAgain = (e:any) => {
+    e.preventDefault();
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setResults([]);
+    //router.push('/');
+  }
 
-    GROUPS.map((group: Group) => (
-      results.push(newChartResult(group))
-    ));
-
+  if (results.length) {
     return (
       <div>
         <Nav />
@@ -59,7 +70,7 @@ export default function Survey() {
             <BarChart data={results} />
           </div>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link href="/" className="rounded-md bg-white px-3.5 py-2.5 text-md font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Start again?</Link>
+            <button onClick={startAgain} className="rounded-md bg-white px-3.5 py-2.5 text-md font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Start again?</button>
           </div>
         </Container>
         <Footer />

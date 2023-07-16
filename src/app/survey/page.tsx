@@ -32,7 +32,7 @@ export default function Survey() {
         <Nav />
         <Progress progress={progress} />
         <Container>
-          <div className="text-xl py-4 min-h-[40vh]">Survey Complete!</div>
+          <div className="text-xl py-16">Survey Complete!</div>
           <Link href="/results" className="w-full text-xl rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
             Click to view your results
           </Link>

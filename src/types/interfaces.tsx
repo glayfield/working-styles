@@ -16,11 +16,24 @@ export interface Option {
     score: number
 }
 
+export interface Groups {
+    bePerfect: string,
+    pleaseOthers: string,
+    hurryUp: string,
+    beStrong: string,
+    tryHard: string
+}
+
 export interface Group {
     id: number,
     name: string,
+    key: string,
     color: string,
-    desc?: string
+    imperative?: string[],
+    identification?: string[],
+    benefits?: string[],
+    problems?: string[],
+    treatment?: string[]
 }
 
 export interface AxisBottomProps {

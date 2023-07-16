@@ -5,15 +5,26 @@ import Link from "next/link";
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
 import { useStickyState } from "@/utils/storage";
+import LinkButton from "@/components/link-button";
 
 export default function Home() {
   const [currentQuestion] = useStickyState(0, 'user-current');
   const [results] = useStickyState([], 'user-results');
 
-  const buttonText = () => {
-    if (results.length) return 'See Your Results';
-    if (currentQuestion > 0) return 'Continue Survey';
-    return 'Get started';
+  const startButton = () => {
+    let route:string = "/survey";
+    let buttonText:string = "Get Started!";
+
+    if (currentQuestion > 0) {
+      buttonText = "Continue";
+    }
+    if (results.length) {
+      route = "/results"
+      buttonText = "See Your Results!";
+    }
+    return (
+      <LinkButton route={route} text={buttonText} />
+    )
   }
 
   return (
@@ -33,7 +44,7 @@ export default function Home() {
           <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">5 Minutes.<br />25 Questions.<br />Identify your work style.</h2>
             <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-              <Link href="/survey" className="rounded-md bg-white px-3.5 py-2.5 text-md font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{ buttonText() }</Link>
+            { startButton() }
             </div>
             <p className="mt-6 text-lg leading-8 text-gray-300">Not everyone works the same way, which is why there are different work styles.</p>
             <p className="mt-6 text-lg leading-8 text-gray-300">Most people don&lsquo;t think about their work style, but when individuals try to collaborate as a group, team or business, then divergent work styles can block progress.</p>

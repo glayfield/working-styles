@@ -19,6 +19,7 @@ export interface Option {
 export interface Group {
     id: number,
     name: string,
+    color: string,
     desc?: string
 }
 

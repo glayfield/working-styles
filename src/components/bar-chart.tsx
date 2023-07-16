@@ -1,4 +1,5 @@
-import { AxisBottomProps, AxisLeftProps, BarChartProps, BarsProps } from "@/types/interfaces";
+import GROUPS from "@/data/groups";
+import { AxisBottomProps, AxisLeftProps, BarChartProps, BarsProps, Group } from "@/types/interfaces";
 import { axisBottom, axisLeft, scaleBand, scaleLinear, select } from "d3";
 import { useEffect, useRef } from "react";
 
@@ -29,7 +30,11 @@ function AxisLeft({ scale }: AxisLeftProps) {
 
 
 function Bars({ data, height, scaleX, scaleY }: BarsProps) {
-    const colors = ['teal', 'yellow', 'red', 'purple', 'grey'];
+    let colors:Array<string> = [];
+
+    GROUPS.map((group: Group) => (
+      colors.push(group.color)
+    ));
 
     return (
         <>

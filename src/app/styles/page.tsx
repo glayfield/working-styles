@@ -38,7 +38,36 @@ export default function Styles() {
                         </svg>
                         <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-8 lg:text-left">
                             <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">{group.name}</h2>
-                            <p className="mt-6 text-lg leading-8 text-gray-300">{group?.desc}</p>
+                            <h3 className="text-l font-bold tracking-tight text-white sm:text-xl">Examples mindsets of a "{group.name}":</h3>
+                            <ul className="mt-6 text-lg leading-8">
+                            {group.imperative.map((text: string, index: number) => (
+                                <li key={"a" + index}>"{text}"</li>
+                            ))}
+                            </ul>
+                            <h3 className="text-l tracking-tight text-white sm:text-xl">How to identify a "{group.name}":</h3>
+                            <ul className="mt-6 text-lg leading-8">
+                            {group.identification.map((text: string, index: number) => (
+                                <li key={"b" + index}>{text}</li>
+                            ))}
+                            </ul>
+                            <h3 className="text-l tracking-tight text-white sm:text-xl">How being a "{group.name}" can be a <i>benefit</i> to someone:</h3>
+                            <ul className="mt-6 text-lg leading-8">
+                            {group.benefits.map((text: string, index: number) => (
+                                <li key={"c" + index}>{text}</li>
+                            ))}
+                            </ul>
+                            <h3 className="text-l tracking-tight text-white sm:text-xl">How being a "{group.name}" can be a <i>hindrance</i> to someone:</h3>
+                            <ul className="mt-6 text-lg leading-8">
+                            {group.problems.map((text: string, index: number) => (
+                                <li key={"d" + index}>{text}</li>
+                            ))}
+                            </ul>
+                            <h3 className="text-l tracking-tight text-white sm:text-xl">How to work with someone who is a "{group.name}"?</h3>
+                            <ul className="mt-6 text-lg leading-8">
+                            {group.treatment.map((text: string, index: number) => (
+                                <li key={"e" + index}>{text}</li>
+                            ))}
+                            </ul>
                         </div>
                     </div>
                 ))}

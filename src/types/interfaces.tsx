@@ -29,11 +29,11 @@ export interface Group {
     name: string,
     key: string,
     color: string,
-    imperative?: string[],
-    identification?: string[],
-    benefits?: string[],
-    problems?: string[],
-    treatment?: string[]
+    imperative: string[],
+    identification: string[],
+    benefits: string[],
+    problems: string[],
+    treatment: string[]
 }
 
 export interface AxisBottomProps {

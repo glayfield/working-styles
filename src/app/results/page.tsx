@@ -26,12 +26,10 @@ export default function Results() {
         const matches: Array<Answer> = answers.filter(function (group: Answer) {
             return group.group === groupId;
         });
-        console.log(matches);
         const sum = matches.reduce(
             (accumulator, currentValue) => accumulator + currentValue.score,
             0,
         );
-        console.log('group id ' + groupId + ' sum = ' + sum );
         return sum;
     }
 

@@ -57,6 +57,7 @@ export interface BarsProps {
 }
 
 export interface ChartResult {
+    key: string,
     label: string,
     value: number,
 }

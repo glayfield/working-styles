@@ -20,10 +20,11 @@ export default function Results() {
   const [results, setResults] = useStickyState([], "user-results");
 
   function newChartResult(group: Group): ChartResult {
+    const key = group.key;
     const label = group.name.replaceAll(" Driver", "");
     const value = totalScore(group.id);
 
-    return { label, value };
+    return { key, label, value };
   }
 
   function totalScore(groupId: number) {

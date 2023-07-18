@@ -7,8 +7,6 @@ export default function GradientBox({
 }: {
   children: JSX.Element | Array<JSX.Element>;
 }) {
-  const initColor: string = "#7775D6";
-  const endColor: string = "#E935C1";
 
   return (
     <Fragment>

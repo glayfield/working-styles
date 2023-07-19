@@ -27,6 +27,7 @@ export interface Groups {
 export interface Group {
     id: number,
     name: string,
+    barName: string,
     key: string,
     color: string,
     imperative: string[],

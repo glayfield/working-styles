@@ -2,6 +2,7 @@ const GROUPS = [
   {
     id: 1,
     name: "Be Perfect Driver",
+    barName: "Perfect",
     key: 'bePerfect',
     color: "#F9521E",
     imperative: [
@@ -33,6 +34,7 @@ const GROUPS = [
   {
     id: 2,
     name: "Please Others Driver",
+    barName: "Please",
     key: 'pleaseOthers',
     color: "#CBAE11",
     imperative: [
@@ -70,6 +72,7 @@ const GROUPS = [
   {
     id: 3,
     name: "Hurry Up Driver",
+    barName: "Hurry Up",
     key: 'hurryUp',
     color: "#008D7C",
     imperative: [
@@ -104,6 +107,7 @@ const GROUPS = [
   {
     id: 4,
     name: "Be Strong Driver",
+    barName: "Be Strong",
     key: 'beStrong',
     color: "#FDA649",
     imperative: [
@@ -139,6 +143,7 @@ const GROUPS = [
   {
     id: 5,
     name: "Try Hard Driver",
+    barName: "Try Hard",
     key: 'tryHard',
     color: "#F4E683",
     imperative: [

@@ -2,7 +2,7 @@
 const nextConfig = {
     output: 'export',
     images: { unoptimized: true },
-   //basePath: '/working-styles',
+    //basePath: '/working-styles',
 }
 
 module.exports = nextConfig

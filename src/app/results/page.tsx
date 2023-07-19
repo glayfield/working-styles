@@ -21,7 +21,7 @@ export default function Results() {
 
   function newChartResult(group: Group): ChartResult {
     const key = group.key;
-    const label = group.name.replaceAll(" Driver", "");
+    const label = group.barName;
     const value = totalScore(group.id);
 
     return { key, label, value };
@@ -57,19 +57,19 @@ export default function Results() {
     <GradientBox>
       <Container>
         <h1>Your Results</h1>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
+        <div className="w-full flex items-center justify-center gap-x-6">
           <BarChart data={results} />
         </div>
         <div className="space-y-4 justify-center">
           <p></p>
           <div className="text-md">For more detail:</div>
-          <button className="w-full min-w-[30vw] text-xl rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+          <button className="w-full min-w-[25vw] text-xl rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
             <Link href="/styles">View the working styles</Link>
           </button>
           <div className="text-md">To take the survey again:</div>
           <button
             onClick={startAgain}
-            className="w-full min-w-[30vw] text-xl rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="w-full min-w-[25vw] text-xl rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Start the survey again
           </button>
